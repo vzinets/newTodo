@@ -3,12 +3,14 @@ import css from "./style.module.css";
 import { headers } from "../../../next.config";
 
 const TodoList = () => {
-  const [todo, setTodo] = useState("");
   const [task, setTask] = useState([]);
+  const [todo, setTodo] = useState("");
 
   useEffect(() => {
-    const storedTodo = JSON.parse(localStorage.getItem("todoTasks")) || [];
-    setTask(storedTodo);
+    const storedTodo = localStorage.getItem("todoTasks")
+    if(storedTodo){
+      setTask(JSON.parse(storedTodo))
+    }
   }, []);
 
   useEffect(() => {
