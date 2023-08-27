@@ -4,12 +4,17 @@ import { headers } from "../../../next.config";
 
 const TodoList = () => {
   const [todo, setTodo] = useState("");
-  const [task, setTask] = useState([
-    {
-      text: "default todo",
-      done: true,
-    },
-  ]);
+  const [task, setTask] = useState([]);
+
+  useEffect(() => {
+    const storedTodo = JSON.parse(localStorage.getItem("todoTasks")) || [];
+    setTask(storedTodo);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todoTasks", JSON.stringify(task));
+  }, [task]);
+
   const inputChange = (e) => {
     setTodo(e.target.value);
   };
@@ -57,7 +62,6 @@ const TodoList = () => {
             <input
               type="checkBox"
               checked={item.done}
-            
               onChange={() => handleTogleChange(index)}
             />
             <span className={css.todo__text}>{item.text}</span>
