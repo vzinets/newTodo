@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0 20px 0;
+  padding: 20px 5vw 20px 5vw;
   gap: 20px;
 }
 .todo__button {
@@ -47,4 +47,32 @@
   background-color: #d6850c;
   color: #fff;
   padding: 5px 10px 5px 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .todo__li {
+    gap: 20px;
+    max-width: 70vw;
+    width: 100%;
+  }
+  .todo__text {
+    max-width: 50vw;
+  }
+}
+@media screen and (max-width: 320px) {
+  .del__button {
+    font-size: 12px;
+    padding: 5px;
+  }
+  .todo__button {
+    padding: 4px 10px 4px 5px;
+    font-size: 16px;
+  }
+  .todo__input {
+    padding: 4px 4px 4px 8px;
+    font-size: 16px;
+  }
+  .todo__input:focus {
+    font-size: 16px;
+  }
 }

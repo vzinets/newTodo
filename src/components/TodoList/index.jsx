@@ -7,9 +7,9 @@ const TodoList = () => {
   const [todo, setTodo] = useState("");
 
   useEffect(() => {
-    const storedTodo = localStorage.getItem("todoTasks")
-    if(storedTodo){
-      setTask(JSON.parse(storedTodo))
+    const storedTodo = localStorage.getItem("todoTasks");
+    if (storedTodo) {
+      setTask(JSON.parse(storedTodo));
     }
   }, []);
 
@@ -29,8 +29,11 @@ const TodoList = () => {
   };
 
   const handleDeleteTask = (index) => {
-    const updatedTask = task.filter((_, item) => item !== index);
-    setTask(updatedTask);
+    const del = confirm("are you sure?");
+    if (del) {
+      const updatedTask = task.filter((_, item) => item !== index);
+      setTask(updatedTask);
+    }
   };
   const handleTogleChange = (index) => {
     const updatedTask = [...task];
@@ -62,6 +65,7 @@ const TodoList = () => {
         {task.map((item, index) => (
           <li key={index} className={css.todo__li}>
             <input
+              className={css.todo__made}
               type="checkBox"
               checked={item.done}
               onChange={() => handleTogleChange(index)}
